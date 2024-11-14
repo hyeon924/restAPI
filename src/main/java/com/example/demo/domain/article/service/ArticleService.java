@@ -4,6 +4,7 @@ import com.example.demo.domain.article.dto.ArticleDTO;
 import com.example.demo.domain.article.entity.Article;
 import com.example.demo.domain.article.exception.ArticleNotFoundException;
 import com.example.demo.domain.article.repository.ArticleRepository;
+import com.example.demo.domain.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,17 @@ public Article getArticle(Long id) {
                 .content(content)
                 .build();
         this.articleRepository.save(article);
+        return article;
+    }
+
+    public Article write(String subject, String content, Member member) {
+        Article article = Article.builder()
+                .subject(subject)
+                .content(content)
+                .member(member)
+                .build();
+        this.articleRepository.save(article);
+
         return article;
     }
     

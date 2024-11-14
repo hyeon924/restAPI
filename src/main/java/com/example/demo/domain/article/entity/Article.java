@@ -1,7 +1,9 @@
 package com.example.demo.domain.article.entity;
 
+import com.example.demo.domain.member.entity.Member;
 import com.example.demo.global.jpa.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -15,4 +17,7 @@ import lombok.experimental.SuperBuilder;
 public class Article extends BaseEntity { // BaseEntity를 상속받아 id, createdDate, modifiedDate 포함
     private String subject; // 게시물 제목
     private String content; // 게시물 내용
+
+    @ManyToOne
+    private Member member;
 }
