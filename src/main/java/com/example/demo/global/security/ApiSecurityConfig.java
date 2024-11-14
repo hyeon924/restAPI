@@ -31,7 +31,7 @@ public class ApiSecurityConfig {
                 .csrf(
                         csrf -> csrf
                                 .disable()
-                ) // csrf 토큰 끄기
+                ) // csrf 토큰 끄기 gtg
                 .httpBasic(
                         httpBasic -> httpBasic.disable()
                 ) // httpBasic 로그인 방식 끄기
