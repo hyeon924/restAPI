@@ -40,7 +40,12 @@ public class ApiV1MemberController {
         Member member = this.memberService.getMember(memberRequest.getUsername());
 
         String accessToken = jwtProvider.genAccessToken(member);
-        res.addCookie(new Cookie("accessToken", accessToken));
+        Cookie cookie  = new Cookie("accessToken", accessToken);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(60 * 60);
+        res.addCookie(cookie);
 
         return RsData.of("200", "토큰 발급 성공: " + accessToken, new MemberResponse(member));
     }
