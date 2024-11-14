@@ -2,6 +2,7 @@ package com.example.demo.domain.member.dto;
 
 import com.example.demo.domain.member.entity.Member;
 import lombok.Getter;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,10 +11,11 @@ public class MemberDTO {
     private final String username;
     private final LocalDateTime createdDate;
     private final LocalDateTime modifiedDate;
-    public MemberDTO(Member article) {
-        this.id = article.getId();
-        this.username = article.getUsername();
-        this.createdDate = article.getCreatedDate();
-        this.modifiedDate = article.getModifiedDate();
+
+    public MemberDTO(Member member) {
+        this.id = member.getId();
+        this.username = member.getUsername();
+        this.createdDate = member.getCreatedDate();
+        this.modifiedDate = member.getModifiedDate();
     }
 }
