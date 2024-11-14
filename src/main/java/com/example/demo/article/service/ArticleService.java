@@ -31,5 +31,14 @@ public class ArticleService {// 이곳에 Article과 관련된 비즈니스 로�
           return optionalArticle.map(article -> new ArticleDTO(article)).orElse(null);
       }
 
+//      수정
+  public Article write(String content, String subject) {
+        Article article = Article.builder()
+                .subject(subject)
+                .content(content)
+                .build();
+        this.articleRepository.save(article);
+        return article;
+    }
 }
 

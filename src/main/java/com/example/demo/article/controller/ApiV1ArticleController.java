@@ -4,6 +4,7 @@ import com.example.demo.article.dto.ArticleDTO;
 import com.example.demo.article.entity.Article;
 import com.example.demo.article.request.ArticleCreateRequest;
 import com.example.demo.article.request.ArticleModifyRequest;
+import com.example.demo.article.response.ArticleCreateResponse;
 import com.example.demo.article.response.ArticleResponse;
 import com.example.demo.article.response.ArticlesResponse;
 import com.example.demo.article.service.ArticleService;
@@ -39,8 +40,10 @@ public class ApiV1ArticleController { // REST API 엔드포인트를 정의하�
 
 //    글 등록
     @PostMapping("")
-    public String create(@Valid @RequestBody ArticleCreateRequest articleCreateRequest) {
-        return "등록완료";
+     public RsData<ArticleCreateResponse> create(@Valid @RequestBody ArticleCreateRequest articleCreateRequest) {
+        Article article = this.articleService.write(articleCreateRequest.getSubject(), articleCreateRequest.getContent());
+
+        return RsData.of("200", "등록성공", new ArticleCreateResponse(article));
     }
 
 //    글(특정) 수정
