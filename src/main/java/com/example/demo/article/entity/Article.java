@@ -1,6 +1,6 @@
-package com.example.article.entity;
+package com.example.demo.article.entity;
 
-import com.example.global.jpa.BaseEntity;
+import com.example.demo.global.jpa.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
