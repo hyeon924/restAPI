@@ -27,4 +27,9 @@ public class MemberService {
 
         return member;
     }
+
+//    로그인 정보 가져오기
+    public Member getMember(String username) {
+        return this.memberRepository.findByUsername(username);
+    }
 }

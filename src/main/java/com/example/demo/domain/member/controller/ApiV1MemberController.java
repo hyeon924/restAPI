@@ -5,6 +5,7 @@ import com.example.demo.domain.member.dto.response.MemberResponse;
 import com.example.demo.domain.member.entity.Member;
 import com.example.demo.domain.member.service.MemberService;
 import com.example.demo.global.RsData.RsData;
+import com.example.demo.global.jwt.JwtProvider;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Tag(name = "ApiV1MemberController", description = "회원 인증인가 API")
 public class ApiV1MemberController {
     private final MemberService memberService;
+    private final JwtProvider jwtProvider;
 
     //    회원가입
     @PostMapping("/join")
@@ -29,4 +31,14 @@ public class ApiV1MemberController {
 
         return RsData.of("200", "회원가입이 완료되었습니다.", new MemberResponse(member));
     }
+
+//    로그인
+@PostMapping("/login")
+public RsData<?> login (@Valid @RequestBody MemberRequest memberRequest) {
+    Member member = this.memberService.getMember(memberRequest.getUsername());
+    // accessToken 발급
+    String token = jwtProvider.genAccessToken(member);
+
+    return RsData.of("200", "토큰 발급 성공", token);
+}
 }
