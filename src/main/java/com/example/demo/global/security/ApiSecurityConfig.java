@@ -15,7 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class ApiSecurityConfig {
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
-
     @Bean
     SecurityFilterChain apifilterChain(HttpSecurity http) throws Exception {
         http
@@ -24,10 +23,8 @@ public class ApiSecurityConfig {
                         authorizeRequests -> authorizeRequests
                                 .requestMatchers(HttpMethod.GET, "/api/*/articles").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/*/articles/*").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/*/members/join").permitAll() // 회원가입은 누구나 가능, post 요청만 허용
                                 .requestMatchers(HttpMethod.POST, "/api/*/members/login").permitAll() // 로그인은 누구나 가능, post 요청만 허용
-                                .requestMatchers(HttpMethod.GET, "/api/*/members/me").permitAll() // 임시로 열어놓음
-                                .requestMatchers(HttpMethod.GET, "/api/*/members/logout").permitAll() // 로그아웃은 누구나 가능, post 요청만 허용
+                                .requestMatchers(HttpMethod.GET, "/api/*/members/logout").permitAll() // 로그아웃 누구나 가능, get 요청만 허용
                                 .anyRequest().authenticated()
                 )
                 .csrf(

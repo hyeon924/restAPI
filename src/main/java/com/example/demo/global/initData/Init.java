@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class Init {
     @Bean
     CommandLineRunner initData(ArticleService articleService, MemberService memberService) {
+
         return args -> {
             Member admin = memberService.join("admin", "1234");
             Member user1 =memberService.join("user1", "1234");
