@@ -26,17 +26,25 @@ public class ArticleService {// 이곳에 Article과 관련된 비즈니스 로�
     }
 
 //    단건조회(특정)
-  public ArticleDTO getArticle(Long id) {
+  public Article getArticle(Long id) {
           Optional<Article> optionalArticle = this.articleRepository.findById(id);
-          return optionalArticle.map(article -> new ArticleDTO(article)).orElse(null);
+          return optionalArticle.orElse(null);
       }
 
-//      수정
+//      등록
   public Article write(String content, String subject) {
         Article article = Article.builder()
                 .subject(subject)
                 .content(content)
                 .build();
+        this.articleRepository.save(article);
+        return article;
+    }
+    
+//    수정
+  public Article update(Article article, String content, String subject) {
+        article.setSubject(subject);
+        article.setContent(content);
         this.articleRepository.save(article);
         return article;
     }
