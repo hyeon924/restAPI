@@ -65,8 +65,17 @@ public class ApiV1ArticleController { // REST API 엔드포인트를 정의하�
 
 //    글(특정) 삭제
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        return "삭제완료";
+     public RsData<ArticleResponse> delete(@PathVariable("id") Long id) {
+        Article article = this.articleService.getArticle(id);
+        if (article == null) return RsData.of(
+                "500",
+                "%d 번 게시물은 존재하지 않습니다.".formatted(id),
+                null
+        );
+        this.articleService.delete(article);
+        ArticleDTO articleDTO = new ArticleDTO(article);
+
+        return RsData.of("200", "삭제성공",  new ArticleResponse(articleDTO));
     }
 
 }

@@ -32,7 +32,7 @@ public class ArticleService {// 이곳에 Article과 관련된 비즈니스 로�
       }
 
 //      등록
-  public Article write(String content, String subject) {
+  public Article write(String subject, String content) {
         Article article = Article.builder()
                 .subject(subject)
                 .content(content)
@@ -47,6 +47,11 @@ public class ArticleService {// 이곳에 Article과 관련된 비즈니스 로�
         article.setContent(content);
         this.articleRepository.save(article);
         return article;
+    }
+
+// 삭제
+    public void delete(Article article) {
+        this.articleRepository.delete(article);
     }
 }
 
