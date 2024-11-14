@@ -2,11 +2,13 @@ package com.example.demo.article.service;
 
 import com.example.demo.article.dto.ArticleDTO;
 import com.example.demo.article.entity.Article;
+import com.example.demo.article.exception.ArticleNotFoundException;
 import com.example.demo.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,10 +28,10 @@ public class ArticleService {// 이곳에 Article과 관련된 비즈니스 로�
     }
 
 //    단건조회(특정)
-  public Article getArticle(Long id) {
-          Optional<Article> optionalArticle = this.articleRepository.findById(id);
-          return optionalArticle.orElse(null);
-      }
+public Article getArticle(Long id) {
+    return this.articleRepository.findById(id)
+        .orElseThrow(() -> new ArticleNotFoundException(id));
+}
 
 //      등록
   public Article write(String subject, String content) {

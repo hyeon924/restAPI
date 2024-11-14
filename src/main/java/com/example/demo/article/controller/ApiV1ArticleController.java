@@ -2,6 +2,7 @@ package com.example.demo.article.controller;
 
 import com.example.demo.article.dto.ArticleDTO;
 import com.example.demo.article.entity.Article;
+import com.example.demo.article.exception.ArticleNotFoundException;
 import com.example.demo.article.request.ArticleCreateRequest;
 import com.example.demo.article.request.ArticleModifyRequest;
 import com.example.demo.article.response.ArticleCreateResponse;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController // 이 클래스가 RESTful 웹 서비스의 컨트롤러임을 나타냄. JSON 데이터를 반환(json 형식이 문자열이기 때문에 타임리프가 올 일이 없어 @ResponseBody 어노테이션을 안붙여도 데이터 형태로 넘어감)
 @RequiredArgsConstructor // final 필드에 대해 생성자를 자동으로 생성. 의존성 주입을 간결하게 처리
@@ -32,13 +34,17 @@ public class ApiV1ArticleController { // REST API 엔드포인트를 정의하�
     }
 
 //    단건(특정)조회
-  @GetMapping("/{id}")
-    public RsData<ArticleResponse> getArticle(@PathVariable("id") Long id) {
-        Article  article = this.articleService.getArticle(id);
+@GetMapping("/{id}")
+public RsData<?> getArticle(@PathVariable("id") Long id) {
+    try {
+        Article article = this.articleService.getArticle(id);
         ArticleDTO articleDTO = new ArticleDTO(article);
-
         return RsData.of("200", "게시글 단건 조회 성공", new ArticleResponse(articleDTO));
+    } catch (ArticleNotFoundException e) {
+        return RsData.of("404", e.getMessage(), Map.of("id", e.getId()));
     }
+}
+
 
 //    글 등록
     @PostMapping("")
