@@ -1,6 +1,6 @@
 package com.example.demo.domain.member.controller;
 
-import com.example.demo.domain.member.request.MemberRequest;
+import com.example.demo.domain.member.dto.request.MemberRequest;
 import com.example.demo.domain.member.service.MemberService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
