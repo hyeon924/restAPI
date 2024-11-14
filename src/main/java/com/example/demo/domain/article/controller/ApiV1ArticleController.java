@@ -1,15 +1,15 @@
-package com.example.demo.article.controller;
+package com.example.demo.domain.article.controller;
 
-import com.example.demo.article.dto.ArticleDTO;
-import com.example.demo.article.entity.Article;
-import com.example.demo.article.exception.ArticleNotFoundException;
-import com.example.demo.article.request.ArticleCreateRequest;
-import com.example.demo.article.request.ArticleModifyRequest;
-import com.example.demo.article.response.ArticleCreateResponse;
-import com.example.demo.article.response.ArticleModifyResponse;
-import com.example.demo.article.response.ArticleResponse;
-import com.example.demo.article.response.ArticlesResponse;
-import com.example.demo.article.service.ArticleService;
+import com.example.demo.domain.article.dto.ArticleDTO;
+import com.example.demo.domain.article.entity.Article;
+import com.example.demo.domain.article.exception.ArticleNotFoundException;
+import com.example.demo.domain.article.request.ArticleCreateRequest;
+import com.example.demo.domain.article.request.ArticleModifyRequest;
+import com.example.demo.domain.article.response.ArticleCreateResponse;
+import com.example.demo.domain.article.response.ArticleModifyResponse;
+import com.example.demo.domain.article.response.ArticleResponse;
+import com.example.demo.domain.article.response.ArticlesResponse;
+import com.example.demo.domain.article.service.ArticleService;
 import com.example.demo.global.RsData.RsData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,11 +17,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 // 이 클래스가 RESTful 웹 서비스의 컨트롤러임을 나타냄. JSON 데이터를 반환(json 형식이 문자열이기 때문에 타임리프가 올 일이 없어 @ResponseBody 어노테이션을 안붙여도 데이터 형태로 넘어감)

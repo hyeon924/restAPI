@@ -1,15 +1,13 @@
-package com.example.demo.article.service;
+package com.example.demo.domain.article.service;
 
-import com.example.demo.article.dto.ArticleDTO;
-import com.example.demo.article.entity.Article;
-import com.example.demo.article.exception.ArticleNotFoundException;
-import com.example.demo.article.repository.ArticleRepository;
+import com.example.demo.domain.article.dto.ArticleDTO;
+import com.example.demo.domain.article.entity.Article;
+import com.example.demo.domain.article.exception.ArticleNotFoundException;
+import com.example.demo.domain.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 

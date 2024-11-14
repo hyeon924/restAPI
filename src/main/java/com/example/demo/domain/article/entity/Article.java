@@ -1,4 +1,4 @@
-package com.example.demo.article.entity;
+package com.example.demo.domain.article.entity;
 
 import com.example.demo.global.jpa.BaseEntity;
 import jakarta.persistence.Entity;
