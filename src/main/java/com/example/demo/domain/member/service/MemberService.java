@@ -26,7 +26,7 @@ public class MemberService {
         Member checkedMember = this.memberRepository.findByUsername(username);
 
         if (checkedMember != null) {
-            throw new RuntimeException("이미 가입됩 사용자 입니다.");
+            throw new RuntimeException("이미 가입된 사용자 입니다.");
         }
 
         Member member = Member.builder()

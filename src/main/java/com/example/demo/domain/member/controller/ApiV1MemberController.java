@@ -53,6 +53,9 @@ public class ApiV1MemberController {
         refreshTokenCookie.setPath("/");
         refreshTokenCookie.setMaxAge(60 * 60);
         res.addCookie(refreshTokenCookie);
+
+        System.out.println("accessToken" + accessToken);
+        System.out.println("refreshToken" + refreshToken);
         
         return RsData.of("200", "토큰 발급 성공: " + accessToken , new MemberResponse(member));
     }
@@ -60,6 +63,7 @@ public class ApiV1MemberController {
     //   내 정보
     @GetMapping("/me")
     public RsData<MemberResponse> me (HttpServletRequest req) {
+        System.out.println("test");
         Cookie[] cookies = req.getCookies();
         String accessToken = "";
         for (Cookie cookie : cookies) {
@@ -67,10 +71,13 @@ public class ApiV1MemberController {
                 accessToken = cookie.getValue();
             }
         }
+        System.out.println("accessToken" + accessToken);
+
 
         Map<String, Object> claims =  jwtProvider.getClaims(accessToken);
         String username = (String) claims.get("username");
         Member member = this.memberService.getMember(username);
+        System.out.println("member");
 
         return RsData.of("200", "내 회원정보", new MemberResponse(member));
     }

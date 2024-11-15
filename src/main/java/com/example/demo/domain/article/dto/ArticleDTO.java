@@ -22,6 +22,7 @@ public class ArticleDTO { // 엔티티는 정보를 저장할때만 사용되고
         this.subject = article.getSubject();
         this.content = article.getContent();
         this.author = article.getMember().getUsername();
+//        this.author = (article.getMember() != null) ? article.getMember().getUsername() : "Anonymous"; // null 처리
         this.createdDate = article.getCreatedDate();
         this.modifiedDate = article.getModifiedDate();
     }
