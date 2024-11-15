@@ -2,13 +2,11 @@ package com.example.demo.global.Util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Util {
     public static class json {
-
         public static Object toStr(Map<String, Object> map) {
             try {
                 return new ObjectMapper().writeValueAsString(map);
@@ -17,7 +15,6 @@ public class Util {
             }
         }
     }
-
     public static Map<String, Object> toMap(String jsonStr) {
         try {
             return new ObjectMapper().readValue(jsonStr, LinkedHashMap.class);
