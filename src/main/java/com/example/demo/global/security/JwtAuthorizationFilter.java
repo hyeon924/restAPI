@@ -24,7 +24,15 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     @Override
     @SneakyThrows
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
-        if (request.getRequestURI().contains("/api/v1/") || request.getRequestURI().equals("/api/v1/members/login") || request.getRequestURI().equals("/api/v1/members/logout")) {
+//        로그인이 잘 됐음에도 내 정보, 등록, 수정, 삭제 등의 서비스가 제대로 작동하지 않았던 이유는 지금 이 파일의
+//        if (request.getRequestURI().contains("/api/v1/") || request.getRequestURI().equals("/api/v1/members/login") || request.getRequestURI().equals("/api/v1/members/logout")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }에서 인증이 필요하지 않은 페이지는 컨트롤러로 return하고 인증이 필요한 페이지는 하위의 유효성 검증을 마치고 컨트롤러로 return하는 내용인데
+//        request.getRequestURI().contains("/api/v1/")의 조건으로 /api/v1/을 가지고 있는 페이지는 모두 일단 컨트롤러로 return하는 바람에 유효성 검증을 받지 못해서 403에러가 났었음...
+//        request.getRequestURI().contains("/api/v1/") 조건을 아래처럼 변경 후 실행하니 모두 잘 됨,,,!
+
+        if (request.getRequestURI().equals("/api/v1/members/login") || request.getRequestURI().equals("/api/v1/members/logout")) {
             filterChain.doFilter(request, response);
             return;
         }
